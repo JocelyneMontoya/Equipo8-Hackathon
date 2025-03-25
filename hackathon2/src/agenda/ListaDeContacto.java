@@ -1,14 +1,17 @@
 package agenda;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ListaDeContacto {
 
-    ArrayList<String> listaDeContacto;
+    ArrayList<Contacto> listaDeContacto;
 
-    public ListaDeContacto(ArrayList<String> listaDeContacto) {
-        this.listaDeContacto = listaDeContacto;
+    public ListaDeContacto() {
+        this.listaDeContacto = new ArrayList<>(10);
     }
+
+    //Funcionalidades
 
     public void añadirContacto (String nombre, String apellido, String numero) {
 
@@ -21,14 +24,51 @@ public class ListaDeContacto {
     }
     public void buscaContacto(String nombre, String apellido, String numero){
 
-    }
-    public void eliminarContacto(String nombre, String apellido, String numero){
 
     }
-    public void agendaLlena (String nombre, String apellido, String numero){
+    public void eliminarContacto(String nombre, String apellido){
+        //Iterator para recorrer la lista
+        Iterator<Contacto>contactoIterator = listaDeContacto.iterator();
+        boolean encontrado = false; //será true cuando se encuentre
 
+        while (contactoIterator.hasNext()){ //hasNext() true hay elementos en la lista
+            Contacto contacto = contactoIterator.next(); //iterador.next obtiene el elemento en la lista y lo guarda en contacto
+            if (contacto.getNombre().equalsIgnoreCase(nombre) && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                contactoIterator.remove(); //quita el contacto
+                System.out.println("Contacto eliminado con éxito");
+                encontrado = true;
+                 break;
+            }
+        }
+        if(encontrado==false){
+            System.out.println("Contacto no encontrado");
+        }
     }
-    public void espacioLibres (String nombre, String apellido, String numero){
 
+    public void modificarTelefono(String nombre, String apellido, String numero){
+        //For para recorrer lista de contacto y buscar si está
+        boolean encontrado = false; //será true cuando se encuentre
+        for(Contacto contacto : listaDeContacto){
+            if(contacto.getNombre().equalsIgnoreCase(nombre) && contacto.getApellido().equalsIgnoreCase(apellido)){
+                contacto.setNumero(numero);
+                System.out.println("Numero modificado con éxito");
+                encontrado=true;
+            }
+        }
+        if(encontrado==false){
+            System.out.println("Contacto no encontrado");
+        }
+    }
+
+    public void agendaLlena (){
+        if(listaDeContacto.size()==10){
+            System.out.println("Lista de contactos llena");
+        }else{
+            System.out.println("Tiene " +listaDeContacto.size()+" contactos. \nLe sobran "+ (10-listaDeContacto.size())+" de los 10 espacios disponibles");
+        }
+    }
+
+    public void espacioLibres (){
+        System.out.println("Espacios disponibles en lista de contactos: "+(10-listaDeContacto.size()));
     }
 }
