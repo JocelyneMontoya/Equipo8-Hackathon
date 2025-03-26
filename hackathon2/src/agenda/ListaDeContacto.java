@@ -13,13 +13,28 @@ public class ListaDeContacto {
 
     //Funcionalidades
 
-    public void añadirContacto (String nombre, String apellido, String numero) {
+    public void añadirContacto (Contacto c) {
+        if (agendaLlena()) {
+            System.out.println("La agenda está llena, no se pueden añadir más contactos.");
+        } else if (existeContacto(c)) {
+            System.out.println("El contacto con nombre " + c.getNombre() + " ya existe.");
+        } else {
+            listaDeContacto.add(c);
+            System.out.println("Contacto añadido correctamente.");
+        }
 
     }
-    public void existeContacto(String nombre, String apellido, String numero){
-
+    public boolean existeContacto(Contacto c) {
+        for (Contacto contacto : listaDeContacto) {
+            if (contacto.getNombre().equalsIgnoreCase(c.getNombre())) {
+                return true;
+            }
+        }
+        return false;
     }
-    public void listarContactos() {
+
+    public boolean listarContactos(String nombre, String apellido, String numero){
+
         if (listaDeContacto.isEmpty()){
             System.out.println("Agenda vacía");
         }else {
@@ -28,6 +43,7 @@ public class ListaDeContacto {
                 System.out.println("Contacto: " + contacto);
             }
         }
+
 
     }
     public void buscaContacto(String nombre, String apellido){
@@ -74,7 +90,7 @@ public class ListaDeContacto {
         }
     }
 
-    public void agendaLlena (){
+    public boolean agendaLlena (){
         if(listaDeContacto.size()==10){
             System.out.println("Lista de contactos llena");
         }else{
