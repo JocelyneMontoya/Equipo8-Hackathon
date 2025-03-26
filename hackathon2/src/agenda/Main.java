@@ -27,8 +27,20 @@ public class Main {
             opcion = scanner.nextInt();
 
             switch (opcion) {
-                case 1://Añadir Contacto
-                case 2://Existencia de Contacto
+                case 1:///Añadir Contacto
+                    System.out.print("Nombre: ");
+                    String nombre = scanner.nextLine();
+                    System.out.print("Apellido: ");
+                    String apellido = scanner.nextLine();
+                    System.out.print("Número: ");
+                    String numero = scanner.nextLine();
+
+                    Contacto nuevoContacto = new Contacto(nombre, apellido, numero);
+                    listaDeContacto.añadirContacto(nuevoContacto);
+                    break;
+                case 2:///Existencia de Contacto
+                    listaDeContacto.listarContactos();
+                    break;
                 case 3://Lista de Contacto
                 case 4://Buscar Contacto
                 case 5:////Eliminar contacto
