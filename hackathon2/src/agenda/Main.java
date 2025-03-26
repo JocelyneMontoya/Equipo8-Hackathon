@@ -25,11 +25,11 @@ public class Main {
 
 
             opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer después de nextInt()
 
             switch (opcion) {
 
                 case 1:///Añadir Contacto
-                    scanner.nextLine();
                     System.out.print("Nombre: ");
                     String nombre = scanner.nextLine();
                     System.out.print("Apellido: ");
@@ -39,9 +39,9 @@ public class Main {
 
                     Contacto nuevoContacto = new Contacto(nombre, apellido, numero);
                     listaDeContacto.añadirContacto(nombre, apellido, numero);
+                    System.out.println("\n");
                     break;
                 case 2:///Existencia de Contacto
-                    scanner.nextLine();
                     System.out.print("Nombre: ");
                     String nombreExiste = scanner.nextLine();
                     System.out.print("Apellido: ");
@@ -52,17 +52,17 @@ public class Main {
                     }else {
                         System.out.println("El contacto no existe");
                     }
+                    System.out.println("\n");
                     break;
 
                 case 3://Lista de Contacto
-                    scanner.nextLine();
                     listaDeContacto.listarContactos();
+                    System.out.println("\n");
                     break;
 
 
 
                 case 4://Buscar Contacto
-                    scanner.nextLine();
 
                     System.out.println("Ingrese el nombre del contacto a buscar: ");
                     String nombreBuscar = scanner.nextLine();
@@ -71,11 +71,10 @@ public class Main {
                     String apellidoBuscar = scanner.nextLine();
 
                     listaDeContacto.buscaContacto(nombreBuscar, apellidoBuscar);
+                    System.out.println("\n");
                     break;
 
                 case 5:////Eliminar contacto
-                    scanner.nextLine(); // Limpiar el buffer después de nextInt()
-
                     System.out.println("Ingrese el Nombre del contacto a eliminar:");
                     String nombreEliminar = scanner.nextLine();
 
@@ -83,20 +82,21 @@ public class Main {
                     String apellidoEliminar = scanner.nextLine();
 
                     listaDeContacto.eliminarContacto(nombreEliminar, apellidoEliminar);
+                    System.out.println("\n");
                     break;
 
                 case 6: //Modificar número
-                    scanner.nextLine(); // Limpiar el buffer después de nextInt()
-
                     System.out.println("Ingrese el Nombre del contacto:");
                     String nombreNumero = scanner.nextLine();
 
                     System.out.println("Ingrese el Apellido del contacto:");
                     String apellidoNumero = scanner.nextLine();
+
                     System.out.println("Ingrese el nuevo numero de teléfono: ");
                     String numeroNuevo= scanner.nextLine();
 
                     listaDeContacto.modificarTelefono(nombreNumero,apellidoNumero,numeroNuevo);
+                    System.out.println("\n");
                     break;
 
                 case 7://Agenda llena
@@ -106,14 +106,17 @@ public class Main {
                     }else{
                         System.out.println("Tiene espacios disponibles");
                     }
+                    System.out.println("\n");
                     break;
 
                 case 8://Espacio libre
                     listaDeContacto.espacioLibres();
+                    System.out.println("\n");
                     break;
 
                 case 9:
                     System.out.println("Está saliendo de su agenda");
+                    System.out.println("\n");
                     break;
             }
         }while (opcion!=9);

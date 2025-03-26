@@ -1,6 +1,7 @@
 package agenda;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class ListaDeContacto {
@@ -39,19 +40,21 @@ public class ListaDeContacto {
         if (listaDeContacto.isEmpty()){
             System.out.println("Agenda vacía");
         }else {
-            System.out.println("Contactos: ");
+            //Ordenar alfabeticamente la listaDeContacto
+            listaDeContacto.sort(Comparator.comparing(Contacto::getNombre).thenComparing(Contacto::getApellido));
+
+            System.out.println("Contactos: \n");
             for (Contacto contacto : listaDeContacto){
                 System.out.println("Contacto: " + contacto);
             }
         }
-
-
     }
+
     public void buscaContacto(String nombre, String apellido){
         boolean encontrar = false;
         for (Contacto contacto : listaDeContacto) {
             if (contacto.getNombre().equalsIgnoreCase(nombre) && contacto.getApellido().equalsIgnoreCase(apellido)) {
-                System.out.println("Contacto: "+ contacto.getNumero());
+                System.out.println("Numero de contacto: "+ contacto.getNumero());
                 encontrar=true;
             }
         }if (encontrar == false){
