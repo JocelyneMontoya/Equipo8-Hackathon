@@ -29,6 +29,7 @@ public class Main {
             switch (opcion) {
 
                 case 1:///Añadir Contacto
+                    scanner.nextLine();
                     System.out.print("Nombre: ");
                     String nombre = scanner.nextLine();
                     System.out.print("Apellido: ");
@@ -37,10 +38,20 @@ public class Main {
                     String numero = scanner.nextLine();
 
                     Contacto nuevoContacto = new Contacto(nombre, apellido, numero);
-                    listaDeContacto.añadirContacto(nuevoContacto);
+                    listaDeContacto.añadirContacto(nombre, apellido, numero);
                     break;
                 case 2:///Existencia de Contacto
-                    listaDeContacto.listarContactos();
+                    scanner.nextLine();
+                    System.out.print("Nombre: ");
+                    String nombreExiste = scanner.nextLine();
+                    System.out.print("Apellido: ");
+                    String apellidoExiste = scanner.nextLine();
+                    boolean existencia = listaDeContacto.existeContacto(nombreExiste, apellidoExiste);
+                    if (existencia == true){
+                        System.out.println("El contancto existe");
+                    }else {
+                        System.out.println("El contacto no existe");
+                    }
                     break;
 
                 case 3://Lista de Contacto
@@ -89,7 +100,12 @@ public class Main {
                     break;
 
                 case 7://Agenda llena
-                    listaDeContacto.agendaLlena();
+                    boolean listaLlena = listaDeContacto.agendaLlena();
+                    if (listaLlena== true){
+                        System.out.println("Lista de contactos llena");
+                    }else{
+                        System.out.println("Tiene espacios disponibles");
+                    }
                     break;
 
                 case 8://Espacio libre
