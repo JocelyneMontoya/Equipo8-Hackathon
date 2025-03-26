@@ -27,6 +27,7 @@ public class Main {
             opcion = scanner.nextInt();
 
             switch (opcion) {
+
                 case 1:///Añadir Contacto
                     System.out.print("Nombre: ");
                     String nombre = scanner.nextLine();
@@ -41,8 +42,26 @@ public class Main {
                 case 2:///Existencia de Contacto
                     listaDeContacto.listarContactos();
                     break;
+
                 case 3://Lista de Contacto
+                    scanner.nextLine();
+                    listaDeContacto.listarContactos();
+                    break;
+
+
+
                 case 4://Buscar Contacto
+                    scanner.nextLine();
+
+                    System.out.println("Ingrese el nombre del contacto a buscar: ");
+                    String nombreBuscar = scanner.nextLine();
+
+                    System.out.println("Ingrese el apellido del contacto a buscar:");
+                    String apellidoBuscar = scanner.nextLine();
+
+                    listaDeContacto.buscaContacto(nombreBuscar, apellidoBuscar);
+                    break;
+
                 case 5:////Eliminar contacto
                     scanner.nextLine(); // Limpiar el buffer después de nextInt()
 
@@ -53,6 +72,7 @@ public class Main {
                     String apellidoEliminar = scanner.nextLine();
 
                     listaDeContacto.eliminarContacto(nombreEliminar, apellidoEliminar);
+                    break;
 
                 case 6: //Modificar número
                     scanner.nextLine(); // Limpiar el buffer después de nextInt()
@@ -66,12 +86,15 @@ public class Main {
                     String numeroNuevo= scanner.nextLine();
 
                     listaDeContacto.modificarTelefono(nombreNumero,apellidoNumero,numeroNuevo);
+                    break;
 
                 case 7://Agenda llena
                     listaDeContacto.agendaLlena();
+                    break;
 
                 case 8://Espacio libre
                     listaDeContacto.espacioLibres();
+                    break;
 
                 case 9:
                     System.out.println("Está saliendo de su agenda");
