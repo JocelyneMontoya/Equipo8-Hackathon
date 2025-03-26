@@ -19,10 +19,24 @@ public class ListaDeContacto {
     public void existeContacto(String nombre, String apellido, String numero){
 
     }
-    public void listarContactos(String nombre, String apellido, String numero){
+    public void listarContactos() {
+        if (listaDeContacto.isEmpty()){
+            System.out.println("Agenda vacía");
+        }else {
+            System.out.println("Contactos: ");
+            for (Contacto contacto : listaDeContacto){
+                System.out.println("Contacto: " + contacto);
+            }
+        }
 
     }
-    public void buscaContacto(String nombre, String apellido, String numero){
+    public void buscaContacto(String nombre, String apellido){
+        listaDeContacto.forEach(contacto -> {
+            if (contacto.getNombre().equalsIgnoreCase(nombre) && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                System.out.println("Contacto: " + contacto);
+            }
+        });
+
 
 
     }
